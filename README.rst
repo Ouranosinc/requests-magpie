@@ -15,10 +15,3 @@ adds optional Magpie authentication support. Basic GET usage:
     r = requests.get("https://www.example.com/protected", auth=auth)
 
 The entire ``requests.api`` should be supported.
-
-Logging
--------
-
-This library makes extensive use of Python's logging facilities.
-
-Log messages are logged to the ``requests_magpie`` named loggers.
