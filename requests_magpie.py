@@ -55,3 +55,6 @@ class MagpieAuth(AuthBase):
         request.prepare_cookies(merged_cookies)
 
         return request
+
+    def __repr__(self):
+        return f"<MagpieAuth url={self.magpie_url}, username={self.username}>"
