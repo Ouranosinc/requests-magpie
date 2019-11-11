@@ -34,7 +34,7 @@ from requests.auth import AuthBase
 from requests.cookies import merge_cookies
 from requests.exceptions import RequestException
 
-__version__ = '0.1.0dev'
+__version__ = '0.1.0'
 
 
 class MagpieAuthenticationError(RequestException):
