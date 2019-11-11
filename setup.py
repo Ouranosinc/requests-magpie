@@ -37,7 +37,7 @@ def get_version():
 
 
 setup(
-    name='requests-mapgie',
+    name='requests-magpie',
     description=short_desc,
     long_description=long_desc,
     author='David Caron',
