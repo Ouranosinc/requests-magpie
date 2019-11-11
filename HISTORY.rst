@@ -1,7 +1,7 @@
 History
 =======
 
-0.1: Never released
--------------------
+0.1.1
+-----
 
 - Initial Release
