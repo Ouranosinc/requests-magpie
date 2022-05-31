@@ -44,32 +44,37 @@ class MagpieAuthenticationError(RequestException):
 class MagpieAuth(AuthBase):
     """Attaches Magpie Authentication to the given Request object."""
 
-    def __init__(self, magpie_url, username, password, provider="ziggurat", **request_kwargs):
+    def __init__(self, magpie_url, username, password, provider="ziggurat", cache=True, **request_kwargs):
         self.magpie_url = magpie_url
         self.username = username
         self.password = password
         self.provider = provider
+        self.cache = cache
         self.request_kwargs = request_kwargs
+        self._cookies = None
 
     def __call__(self, request: PreparedRequest):
-        signin_url = self.magpie_url.rstrip("/") + "/signin"
+        if self._cookies:
+            merged_cookies = self._cookies
+        else:
+            signin_url = self.magpie_url.rstrip("/") + "/signin"
+            data = {
+                "user_name": self.username,
+                "password": self.password,
+                "provider_name": self.provider,
+            }
+            response = requests.post(signin_url, data=data, **self.request_kwargs)
 
-        data = {
-            "user_name": self.username,
-            "password": self.password,
-            "provider_name": self.provider,
-        }
-        response = requests.post(signin_url, data=data, **self.request_kwargs)
+            try:
+                response.raise_for_status()
+            except RequestException as e:
+                raise MagpieAuthenticationError from e
 
-        try:
-            response.raise_for_status()
-        except RequestException as e:
-            raise MagpieAuthenticationError from e
-
-        merged_cookies = merge_cookies(request._cookies, response.cookies)  # noqa
+            merged_cookies = merge_cookies(request._cookies, response.cookies)  # noqa
+            if self.cache:
+                self._cookies = merged_cookies
 
         request.prepare_cookies(merged_cookies)
-
         return request
 
     def __repr__(self):
