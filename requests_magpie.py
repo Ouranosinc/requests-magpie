@@ -34,7 +34,7 @@ from requests.auth import AuthBase
 from requests.cookies import merge_cookies
 from requests.exceptions import RequestException
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 
 class MagpieAuthenticationError(RequestException):
@@ -44,28 +44,29 @@ class MagpieAuthenticationError(RequestException):
 class MagpieAuth(AuthBase):
     """Attaches Magpie Authentication to the given Request object."""
 
-    def __init__(self, magpie_url, username, password, provider="ziggurat"):
+    def __init__(self, magpie_url, username, password, provider="ziggurat", **request_kwargs):
         self.magpie_url = magpie_url
         self.username = username
         self.password = password
         self.provider = provider
+        self.request_kwargs = request_kwargs
 
     def __call__(self, request: PreparedRequest):
-        signin_url = self.magpie_url.rstrip('/') + '/signin'
+        signin_url = self.magpie_url.rstrip("/") + "/signin"
 
         data = {
             "user_name": self.username,
             "password": self.password,
             "provider_name": self.provider,
         }
-        response = requests.post(signin_url, data=data)
+        response = requests.post(signin_url, data=data, **self.request_kwargs)
 
         try:
             response.raise_for_status()
         except RequestException as e:
             raise MagpieAuthenticationError from e
 
-        merged_cookies = merge_cookies(request._cookies, response.cookies)
+        merged_cookies = merge_cookies(request._cookies, response.cookies)  # noqa
 
         request.prepare_cookies(merged_cookies)
 
