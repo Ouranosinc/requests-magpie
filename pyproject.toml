@@ -31,10 +31,12 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dynamic = ["version"]
-
 dependencies = [
  "requests >=2.32.2"
 ]
+
+[project.optional-dependencies]
+dev = ["pytest"]
 
 [project.urls]
 "Homepage" = "https://github.com/Ouranosinc/requests-magpie"
@@ -47,6 +49,7 @@ include = [
     "CHANGELOG",
     "LICENSE",
     "README.rst",
+    "tests/*.py",
 ]
 exclude = [
     ".*",
