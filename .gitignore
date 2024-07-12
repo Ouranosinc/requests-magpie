@@ -1,7 +1,7 @@
+.idea
 *.pyc
 *.swp
-env/
 build/
 dist/
+env/
 requests_magpie.egg-info/
-.idea
