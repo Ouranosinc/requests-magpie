@@ -1,6 +1,6 @@
 # ISC License
 #
-# Copyright (c) 2019 David Caron
+# Copyright (c) 2019-2024, David Caron, Francis Migneault, Trevor James Smith
 #
 # Permission to use, copy, modify and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -17,8 +17,8 @@
 requests Magpie authentication library
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Requests is an HTTP library, written in Python, for human beings. This library
-adds optional Magpie authentication support. Basic GET usage:
+Requests is an HTTP library, written in Python, for human beings.
+This library adds optional Magpie authentication support. Basic GET usage:
 
     >>> import requests
     >>> from requests_magpie import MagpieAuth
@@ -34,7 +34,7 @@ from requests.auth import AuthBase
 from requests.cookies import merge_cookies
 from requests.exceptions import RequestException
 
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 
 class MagpieAuthenticationError(RequestException):
