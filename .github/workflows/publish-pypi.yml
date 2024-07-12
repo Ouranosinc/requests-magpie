@@ -1,13 +1,9 @@
 name: Publish Python 🐍 distributions 📦 to PyPI
 
 on:
-  push:
-    branches:
-      - main
   release:
     types:
-      - created
-  workflow_dispatch:
+      - published
 
 permissions:
   contents: read
@@ -15,7 +11,6 @@ permissions:
 jobs:
   deploy_pypi:
     name: Build and publish Python 🐍 distributions 📦 to PyPI
-    if: ${{ success() && (contains(github.ref, 'refs/tags') || github.ref == 'refs/heads/main') }}
     environment: production
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
