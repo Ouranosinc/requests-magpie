@@ -12,7 +12,7 @@ authors = [
 ]
 maintainers = [
   { name = "Trevor James Smith", email = "smith.trevorj@ouranos.ca" },
-  { name = "Francis Migneault", email = "bourgault.pascal@ouranos.ca" }
+  { name = "Francis Charette-Migneault", email = "francis.charette-migneault@crim.ca" }
 ]
 requires-python = ">=3.8"
 classifiers = [
