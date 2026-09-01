@@ -1,6 +1,6 @@
 # ISC License
 #
-# Copyright (c) 2019-2024, David Caron, Francis Charette-Migneault, Trevor James Smith
+# Copyright (c) 2019-2026, David Caron, Francis Charette-Migneault, Trevor James Smith
 #
 # Permission to use, copy, modify and/or distribute this software for any
 # purpose with or without fee is hereby granted, provided that the above
@@ -70,7 +70,7 @@ class MagpieAuth(AuthBase):
             except RequestException as e:
                 raise MagpieAuthenticationError from e
 
-            merged_cookies = merge_cookies(request._cookies, response.cookies)  # noqa
+            merged_cookies = merge_cookies(request._cookies, response.cookies)
             if self.cache:
                 self._cookies = merged_cookies
 
