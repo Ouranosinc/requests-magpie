@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.4.0
+-----
+
+- Updated `flit` to v4.0 project metadata conventions.
+- Licensing notices have been updated to reflect the current year and maintainers.
+
 0.3.0
 -----
 
